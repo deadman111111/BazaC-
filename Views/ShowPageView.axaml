@@ -1,0 +1,50 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:MyApp.ViewModels"
+             x:DataType="vm:ShowPageViewModel"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="MyApp.Views.ShowPageView" FontSize="16">
+    <Grid>
+        <ListBox ItemsSource="{Binding Products}">
+
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+
+                    <Border BorderBrush="Gray" BorderThickness="1" Padding="10" Background="{Binding ColorBackground}">
+                        <Grid ColumnDefinitions="130,*,150">
+
+                            <Border Grid.Column="0" Width="110" Height="110" BorderBrush="Black" BorderThickness="2" CornerRadius="6">
+                                <TextBlock Text="Фото" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Gray"></TextBlock>
+                            </Border>
+
+                            <StackPanel Grid.Column="1">
+                                <TextBlock FontWeight="SemiBold">
+                                    <TextBlock.Text>
+                                        <MultiBinding StringFormat="{}{0} | {1}">
+                                            <Binding Path="IdmanufactureNavigation.Name"></Binding>
+                                            <Binding Path="Name"></Binding>
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+
+                                <TextBlock Text="{Binding IdcategoriesNavigation.Name, StringFormat='\Категория: {0}'}"></TextBlock>
+
+                                <TextBlock Text="{Binding QuantityText, StringFormat='\Количество: {0}'}"></TextBlock>
+
+                                <TextBlock Text="{Binding Composition, StringFormat='\Состав: {0}'}" FontSize="13" TextWrapping="Wrap"></TextBlock>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="2" HorizontalAlignment="Right">
+                                <TextBlock Text="{Binding Price, StringFormat='{}{0} ₽'}" TextDecorations="Strikethrough"
+                                           Foreground="Gray" IsVisible="{Binding HasDiscount}"></TextBlock>
+                                <TextBlock Text="{Binding PriceWithDiscount, StringFormat='{}{0:0.##} ₽'}" FontSize="22"></TextBlock>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</UserControl>
