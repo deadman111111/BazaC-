@@ -5,7 +5,6 @@ namespace MyApp.ViewModels;
  
 public class MainViewModel : ViewModelBase
 {
-
     public static _43pPotapov2026Context myConnection = new _43pPotapov2026Context();
  
     public static MainViewModel Instance = null!;

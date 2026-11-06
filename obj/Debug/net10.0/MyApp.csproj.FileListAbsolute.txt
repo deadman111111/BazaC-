@@ -202,3 +202,4 @@ D:\BD_C#\Myapp\obj\Debug\net10.0\MyApp.genruntimeconfig.cache
 D:\BD_C#\Myapp\obj\Debug\net10.0\ref\MyApp.dll
 D:\BD_C#\Myapp\bin\Debug\net10.0\Avalonia.ReactiveUI.dll
 D:\BD_C#\Myapp\bin\Debug\net10.0\System.Reactive.dll
+D:\BD_C#\MyApp\obj\Debug\net10.0\MyApp.sourcelink.json

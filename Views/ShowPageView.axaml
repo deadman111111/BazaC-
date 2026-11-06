@@ -6,19 +6,46 @@
              x:DataType="vm:ShowPageViewModel"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="MyApp.Views.ShowPageView" FontSize="16">
-    <Grid>
-        <ListBox ItemsSource="{Binding Products}">
-
+    <Grid RowDefinitions="Auto,*">
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="15" Margin="10">
+            <StackPanel>
+                <TextBlock>Поиск по наименованию и описанию</TextBlock>
+                <TextBox Text="{Binding SearchText}" Width="300" Watermark="введите наименование или описание"></TextBox>
+            </StackPanel>
+ 
+            <StackPanel>
+                <TextBlock>Фильтрация по категории</TextBlock>
+                <ComboBox ItemsSource="{Binding AllCategories}" SelectedItem="{Binding SelectedCategory}" Width="220">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}"></TextBlock>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+            </StackPanel>
+ 
+            <StackPanel>
+                <TextBlock>Сортировка по цене</TextBlock>
+                <ComboBox SelectedIndex="{Binding SelectedIndexSort}" Width="220">
+                    <ComboBoxItem>Без сортировки</ComboBoxItem>
+                    <ComboBoxItem>По возрастанию</ComboBoxItem>
+                    <ComboBoxItem>По убыванию</ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+        </StackPanel>
+ 
+        <ListBox Grid.Row="1" ItemsSource="{Binding Products}">
+ 
             <ListBox.ItemTemplate>
                 <DataTemplate>
-
+ 
                     <Border BorderBrush="Gray" BorderThickness="1" Padding="10" Background="{Binding ColorBackground}">
                         <Grid ColumnDefinitions="130,*,150">
-
+ 
                             <Border Grid.Column="0" Width="110" Height="110" BorderBrush="Black" BorderThickness="2" CornerRadius="6">
                                 <TextBlock Text="Фото" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Gray"></TextBlock>
                             </Border>
-
+ 
                             <StackPanel Grid.Column="1">
                                 <TextBlock FontWeight="SemiBold">
                                     <TextBlock.Text>
@@ -28,14 +55,14 @@
                                         </MultiBinding>
                                     </TextBlock.Text>
                                 </TextBlock>
-
+ 
                                 <TextBlock Text="{Binding IdcategoriesNavigation.Name, StringFormat='\Категория: {0}'}"></TextBlock>
-
+ 
                                 <TextBlock Text="{Binding QuantityText, StringFormat='\Количество: {0}'}"></TextBlock>
-
+ 
                                 <TextBlock Text="{Binding Composition, StringFormat='\Состав: {0}'}" FontSize="13" TextWrapping="Wrap"></TextBlock>
                             </StackPanel>
-
+ 
                             <StackPanel Grid.Column="2" HorizontalAlignment="Right">
                                 <TextBlock Text="{Binding Price, StringFormat='{}{0} ₽'}" TextDecorations="Strikethrough"
                                            Foreground="Gray" IsVisible="{Binding HasDiscount}"></TextBlock>
@@ -48,3 +75,4 @@
         </ListBox>
     </Grid>
 </UserControl>
+ 

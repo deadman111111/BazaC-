@@ -6,15 +6,22 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="MyApp.Views.MainWindow"
         x:DataType="vm:MainViewModel"
-        Icon="/Assets/avalonia-logo.ico"
-        Title="MyApp">
-
+        Title="Чудо Обувь - Каталог товаров"
+        FontFamily="Calibri">
+ 
     <Design.DataContext>
-        <!-- This only sets the DataContext for the previewer in an IDE,
-             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
         <vm:MainViewModel />
     </Design.DataContext>
-
-    <UserControl Content="{Binding Uc}"></UserControl>
-
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+ 
+        <Border Background="#10A7A7">
+            <TextBlock Text="Каталог товаров" FontSize="24" VerticalAlignment="Center" Margin="10,0"></TextBlock>
+        </Border>
+        <UserControl Grid.Row="1" Content="{Binding Uc}"></UserControl>
+    </Grid>
 </Window>
+ 
